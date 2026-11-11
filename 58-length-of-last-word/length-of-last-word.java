@@ -2,24 +2,17 @@ import java.util.*;
 
 class Solution {
     public int lengthOfLastWord(String s) {
+        s = s.trim();
+        if(s.length() == 1)
+            return 1;
         int count = 0;
-        int ans = 0;
-        List<Integer> list = new ArrayList<>();
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) != ' ') {
-                count++;
-            } else if (count > 0) {
-                list.add(count);
-                count = 0;
-            }
+        int ind = s.length() - 1;
+        while(ind >= 0){
+            if(s.charAt(ind) == ' ')
+                return count;
+            count++;
+            ind--;
         }
-        if (count > 0) {
-            list.add(count);
-        }
-        int n = list.size();
-        for (int i = 0; i < n; i++) {
-            ans = list.get(i);
-        }
-        return ans;
+        return count;
     }
 }
